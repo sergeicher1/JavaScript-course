@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strings</title>
+  </head>
+  <body>
+    <script>
+      const option2 = new String("Hello");
+      console.log(option2);
+      console.log(option2.length);
+
+      const message = "Hello";
+      console.log(message);
+      console.log(message.length);
+      console.log(message[0]);
+      console.log(message[1]);
+      console.log(message[2]);
+      const message = " Hello World! ";
+      console.log("length before : ", message.length);
+      const newMessage = message.trim();
+      console.log("length after: ", newMessage.length);
+
+      let hello = "Good afternoon";
+      console.log(hello.split(" "));
+      const name = "Tom";
+      const hello = `Hello ${name}`;
+      console.log(hello);
+      age = 37;
+      const userInfo = `${name} is ${age} years old`;
+      console.log(userInfo);
+
+      function sum(x, y ){
+          return x + y;
+      }
+      const a = 5;
+      const b = 4;
+      const result = `${a} + ${b} = ${sum(a, b)}`;
+      console.log(result);
+
+      const tom = {
+          name: "Tom",
+          age: 22,
+      };
+      const userInfo = `${tom.name} is ${tom.age} years old!`;
+      console.log(userInfo);
+      const tom = {name: "Tom", age: 34};
+      const markup = `<div>
+          <p><b>Name</b>: ${tom.name}</p>
+          <p><b>age</b>: ${tom.age}</p>
+          </div>`;
+          document.body.innerHTML = markup;
+
+      const people = [
+          {name: "Tom", age: 33},
+          {name: "Sam", age: 44},
+          {name: "Bob", age: 23},
+      ];
+
+      const markup = `<ul>
+              ${people.map((person) => `<li>${person.name}</li>`)}</ul>`;
+              document.body.innerHTML = markup;
+
+      const initialText = "hello world";
+      const exp =/hello/;
+      const result = exp.exec(initialText);
+      console.log(result);
+      const initialText2 = "Hi all";
+      const result2 = exp.exec(initialText2);
+      console.log(result2);
+      const exp = /[0-9][0-9][0-9][0-9]/;
+      const str1 = "1234";
+      const str2 = "Pytwe23hon";
+      const str3 = "Kot12d34lin";
+      const str4 = "Kot1234lin"; // PAY ATTENTION
+      console.log(exp.test(str1));
+      console.log(exp.test(str2));
+      console.log(exp.test(str3));
+      console.log(exp.test(str4));
+      const str = "Hello\nWorld!";
+
+      const exp = /hello.world/is;
+      console.log(exp.test(str));
+
+      const exp = /\d-?\d\d\d-?\d\d\d-?\d\d\d\d/;
+      const phone1 = "+1-234-567-8901";
+      const phone2 = "12345678901";
+      const phone3 = "1-2345678901";
+      console.log(exp.test(phone1));
+      console.log(exp.test(phone2));
+      console.log(exp.test(phone3));
+
+      const exp = /;+/;
+      const str1 = "number1 = 3"; // ; must occur at least once!
+      const str2 = "number2 = 4;";
+      const str3 = "number3 = 5;;;";
+      console.log(exp.test(str1));
+      console.log(exp.test(str2));
+      console.log(exp.test(str3));
+
+      const exp = /\d-?\d{3}-?\d{3}-?\d{4}/;
+      const phone1 = "+1-234-567-8901";
+      const phone2 = "12345678901";
+      const phone3 = "1-2345678901";
+      console.log(exp.test(phone1));
+      console.log(exp.test(phone2));
+      console.log(exp.test(phone3));
+
+      const contacts =
+        "Email: tom@gmail.com Phones: +1-234-567-8901 and +1-234-567-8901";
+
+        const phonePattern = /\+\d-\d{3}-\d{3}-\d{4}/g;
+        let result;
+        while((result = phonePattern.exec(contacts)) !== null){
+            console.log(result[0]);
+            console.log(result.index);
+
+        }
+
+        const exp = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+        const text = "Date: 2024-03-03";
+        const result  = exp.exec(text);
+        // console.log(`${result[1]}/${result[2]}/${result[3]}`);
+        console.log(result.groups);
+        console.log(result.groups.year);
+        console.log(result.groups.month);
+        console.log(result.groups.day);
+
+            const initialText = "He came home and did his homework";
+            const exp = /home/;
+            const result = initialText.search(exp);
+            // result.forEach((value) => console.log(value));
+            console.log(result);
+
+    </script>
+  </body>
+</html>

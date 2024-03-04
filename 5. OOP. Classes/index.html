@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes</title>
+  </head>
+  <body>
+    <script>
+      const User = class Person{};
+      const tom = new User();
+      console.log(tom);
+      const User2 = class{};
+      const bob = new User2();
+      console.log(bob);
+
+      class Person {
+          name = "Undefined";
+          age = 20;
+          move(place){
+              console.log(`Goes to ${place}`);
+          }
+          eat(){
+              console.log("Eats banana");
+          }
+      }
+      const tom = new Person();
+      tom.name = "Tom";
+      tom.age = 33;
+      console.log(tom.name, tom.age);
+      tom.move("Shop");
+      tom.eat();
+        const Person = class {
+          constructor(name, age) {
+            this.name = name;
+            this.age = age;
+          }
+          print() {
+            console.log(`Name: ${this.name} Age: ${this.age}`);
+          }
+        };
+        const tom = new Person("Tom", 22);
+        console.log(Person.prototype);
+        console.log(tom.__proto__);
+        console.log(Object.getPrototypeOf(tom));
+        console.log(tom.constructor);
+        class Person {
+          #age = 1;
+          constructor(name, age) {
+            this.name = name;
+            this.age = age;
+          }
+          get age() {
+            return this.#age;
+          }
+          set age(age) {
+            console.log(`passed ${age}`);
+            if (age > 0 && age < 110) this.#age = age;
+          }
+          print() {
+            console.log(`Name: ${this.name} Age: ${this.#age}`);
+          }
+        }
+        const tom = new Person("Tom", 33);
+        console.log(tom.age);
+        tom.age = -2;
+        console.log(tom.age);
+
+      class Person{
+          constructor(fName,lName){
+              this.fName = fName;
+              this.lName = lName;
+          }
+          get fullName () {
+              return `${this.fName} ${this.lName}`;
+          }
+
+      }
+      const tom = new Person("Tom", "Smith");
+      console.log(tom.fullName);
+
+        class Person {
+          static #retirementAge = 65;
+          constructor(name, age) {
+            this.name = name;
+            this.age = age;
+          }
+          print() {
+            console.log(`Name: ${this.name} Age: ${this.age}`);
+          }
+          static calculateRestAges(person) {
+            if (this.#retirementAge > person.age) {
+              const restAges = this.#retirementAge - person.age;
+              console.log(`There are ${restAges} years left until retirement`);
+            } else {
+              console.log("You are already retired");
+            }
+          }
+        }
+      //   console.log(Person.#retirementAge);
+        const tom = new Person("Tom", 22);
+        Person.calculateRestAges(tom);
+        const bob = new Person("Bob", 44);
+        Person.calculateRestAges(bob);
+
+      class Person {
+        #name;
+        constructor(name, age) {
+          this.#name = name;
+          this.age = age;
+        }
+        print() {
+          console.log(`Name: ${this.#name} Age: ${this.age}`);
+        }
+      }
+
+      class Employee extends Person {
+        constructor(name, age, company) {
+          super(name, age);
+          this.company = company;
+        }
+        print() {
+          super.print();
+          console.log(`${this.name} works in ${this.company}`);
+        }
+      }
+      const bob = new Employee("Bob", 44, "Google");
+      bob.print();
+    </script>
+  </body>
+</html>

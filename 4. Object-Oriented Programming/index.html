@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OOP</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        name : "Tom",
+        age : 33,
+        phone: "1234566789",
+        email: "tom@gmail.com",
+        address: {
+          country: "USA",
+          state: "Texas",
+        },
+      };
+      const {name, age, ...contacts} = user;
+      console.log(name);
+      console.log(age);
+      console.log(contacts);
+      const users = ["Tom", "Sam", "Bob"];
+      const [,sam, bob] = users;
+      console.log(sam, bob);
+      const people = [
+        {name:"Tom", age: 34},
+        {name:"Sam", age: 55},
+        {name:"Bob", age: 33},
+      ];
+      for(let {name: username, age: userage} of people){
+        console.log(`Name: ${username} Age: ${userage}`);
+      }
+
+      function display({name : username, age: userage}){
+        console.log(username,userage);
+      }
+      function sum([a,b,c]){
+        const result = a +b +c;
+        console.log(result);
+      }
+      const user = {name : "Alice", age: 33, phone: "123456"};
+      const numbers = [3,4,5,6,7,8,9];
+      display(user);
+      sum(numbers);
+      let first = "Tom";
+      let second = "Bob";
+      [first, second] = [second, first];
+      console.log(first);
+      console.log(second);
+      let nums = [9,3,8,1,7,2,6,4,5];
+      for(let i = 0; i < nums.length; i++){
+        for(let j = 0; j < nums.length; j++){
+          if(nums[i] < nums[j]){
+            [nums[j], nums[i]] = [nums[i], nums[j]];
+          }
+        }
+      }
+      console.log(nums);
+      const tom = null;
+      const bob = {
+        name: "Bob",
+        sayHi() {
+          console.log(`Hi, I am ${this.name}`);
+        },
+      };
+      console.log(tom?.name);// undefined
+      console.log(bob?.name);
+      tom?.sayHi();// not executed
+      bob?.sayHi();
+      const tom = {name: "Tom" };
+      const bob = {
+        name: "Bob",
+        company: {
+          title: "Microsoft",
+        },
+      };
+      console.log(tom.company?.title);// undefined
+      console.log(bob.company?.title); // microsoft
+      const tom = { name: "Tom" };
+      const bob = {
+        name: "Bob",
+        langs: ["JavaScript", "Python"],
+      };
+      console.log(tom.langs?.[0]); // undefined
+      console.log(bob.langs?.[3]); // undefined
+      console.log(bob.langs?.[0]);
+      console.log(bob.langs?.[1]);
+      const tom = { name: "Tom" };
+      const bob = {
+        name: "Bob",
+        say(words) {
+          console.log(words);
+        },
+      };
+      console.log(tom.say?.("Hello"));
+      console.log(bob.say?.("Hello"));
+      const sam = { name: "Sam" };
+      const tom = {
+        name: "Tom",
+        company: {
+          title: "Google",
+        },
+      };
+      const bob = {
+        name: "Bob",
+        company: {
+          title: "Microsoft",
+          print() {
+            console.log(`Company ${this.title}`);
+          },
+        },
+      };
+      sam?.company?.print?.(); // not called - no company
+      bob?.company?.print?.(); // company - Microsoft
+      tom?.company?.print?.(); // not called - no print method
+      const tom = { name: "Tom" };
+      Object.preventExtensions(tom);
+      // add new property 
+      tom.company = "Microsoft";
+      console.log(`Name: ${tom.name} Company: ${tom.company}`);
+      const tom = {name: "Tom"};
+      console.log(Object.isExtensible(tom));
+      Object.preventExtensions(tom);
+      console.log(Object.isExtensible(tom));
+      const tom = {name: "Tom"};
+      console.log(Object.isExtensible(tom));
+      console.log(Object.isSealed(tom));
+      console.log(Object.isFrozen(tom));
+      Object.freeze(tom);
+      console.log(Object.isExtensible(tom));
+      console.log(Object.isSealed(tom));
+      console.log(Object.isFrozen(tom));
+
+    </script>
+  </body>
+</html>

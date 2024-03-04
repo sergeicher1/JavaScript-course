@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      const users = new Array();
+      const people = [];
+      console.log(users);
+      console.log(people);
+      const users2 = new Array("Tom", "Bob");
+      const people2 =["Alice", "Sam"];
+      console.log(users2);
+      console.log(people2);
+      const users = [];
+      users[1] = "Tom";
+      users[2] = "Jane";
+      console.log(users);
+      const people = Array.of("Sam", "Bob", "Alice");
+      console.log(people);
+      const array = Array.from("Hello");
+      console.log(array);
+      const numbers = [1,2,3,4,5];
+      const array  = Array.from(numbers, (n) => n * n);
+      console.log(array);
+        const array = Array.from(
+          { length: 3, 0: "Tom", 1: "Sam", 2: "Bob" },
+          (element) => {
+            console.log(element);
+            return element;
+          }
+        );
+        console.log(array);
+        const fruit = [];
+        fruit[0] = "Apples";
+        fruit[1] = "Bananas";
+        fruit[2] = "Pears";
+        console.log("In the fruit", fruit.length, "elements");
+        for (let i = 0; i < fruit.length; i++) {
+          console.log(fruit[i]);
+        }
+
+        const users = [];
+        users[0] = "Tom";
+        users[10] = "Sam";
+        users[5] = "Bob";
+        for(let i = 0; i < users.length; i++){
+          console.log(users[i]);
+        }
+        console.log(users);
+      const users = ["Tom", "Bob", "Alice"];
+      const users2 = ["Jack", "Sam"];
+      function print(first, second, third){
+          console.log(first);
+          console.log(second);
+          console.log(third);
+      }
+      print(...users);
+      print(...users2);
+        function sum(a, b, c) {
+          const d = a + b + c;
+          console.log(d);
+        }
+        sum(1, 2, 3);
+        const nums = [4, 5, 6];
+        sum(...nums);
+      const users = [{name:"Tom"}, {name:"Bob"}, {name:"Alice"}];
+      const people = [...users];
+      people[0] = {name:"Sam"};
+      console.log(users);
+      console.log(people);
+      const users  = [
+          "Tom", "Sam", "Alice", "Bob", "Jack"
+      ];
+      console.log(users.includes("Tom"));
+      console.log(users.includes("John"));
+
+      const numbers = [1,2,3,4,5];
+      numbers.forEach((n) => console.log("Number square: ", n, "=", n*n));
+        function Person(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        const people = [
+          new Person("Tom", 38),
+          new Person("Kate", 31),
+          new Person("Bob", 42),
+          new Person("Alice", 34),
+          new Person("Sam", 34),
+        ];
+        const bigger33 = (p) => p.age > 33;
+        const personName = (p) => p.name;
+        const printName = (p) => console.log(p);
+
+        const text = people.filter(bigger33).map(personName).forEach(printName);
+
+      class Team extends Array {
+        constructor(name, ...memebers) {
+          super(...memebers);
+          this.name = name;
+        }
+      }
+      // crating a team object
+      const barcelona = new Team("Barcelona", "Tom", "Bob", "Sam");
+      console.log(barcelona);
+      // iteration
+      for (const player of barcelona) {
+        console.log(player);
+      }
+      barcelona.push("John");
+      console.log(barcelona);
+      barcelona.splice(1, 1);
+      console.log(barcelona);
+    </script>
+  </body>
+</html>

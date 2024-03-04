@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections & Iterators</title>
+  </head>
+  <body>
+    <script>
+        const weakMap1 = new WeakMap();
+
+        let key1 = {key: 1};
+        let key2 = {key: 2};
+        let value1 = {name: "Tom"};
+        let value2 = {name: "Sam"};
+
+
+        const weakMap2 = new WeakMap([
+            [key1, value1],
+            [key2, value2],
+        ])
+        weakMap2.set(key2, {name: "Kate"});
+        console.log(weakMap2.get(key2));
+        console.log(weakMap2.has(key1));
+        weakMap2.delete(key1);
+        console.log(weakMap2.has(key1));
+
+
+
+
+        const weakSet1 = new WeakSet();
+        const weakSet2 = new WeakSet([
+            {name: "Tom", age: 37},
+            {name: "Sam", age: 34},
+        ]);
+
+
+
+        const weakSet = new WeakSet();
+        weakSet.add({lang: "JavaScript"});
+        weakSet.add({lang: "TypeScript"});
+        // weakSet.add(23);
+        // weakSet.add("23");
+        console.log(weakSet);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const myMap = new Map([
+            [1, "a"],
+            [2, "b"],
+            [3, "c"],
+        ]);
+        console.log(myMap);
+        console.log(myMap.size);
+
+        const myDict = new Map([
+            ["red", "red"],
+            ["green", "green"],
+            ["blue", "blue"],
+        ]);
+        myDict.forEach(function (value, key, map){
+            console.log(key, ":", value);
+        })
+
+        for(item of myDict){
+            console.log(item[0] , ":", item[1]);
+        }
+
+        myDict.delete("red");
+        console.log(myDict);
+        myDict.clear();
+        console.log(myDict);
+        if(myDict.has("reddish")) console.log("reddish");
+        console.log(myDict.get("reddis"));
+        // if the key is presented in dict
+        myDict.set("blue", "skyblue");
+        // if the key is not presented in dict
+        myDict.set("orange", "orange");
+        console.log(myDict);
+        console.log(myDict.size);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const mySet = new Set();
+        const arr = [1,1,2,3,3,4,4,5,2,3];
+        const numbers = new Set(arr);
+        console.log(numbers);
+        const newArray = Array.from(numbers);
+        console.log(newArray);
+        for(n of numbers){
+            console.log(n);
+        }
+        numbers.forEach(function (value1, value2, set){
+            console.log(value1);
+        })
+
+
+
+        console.log(numbers.has(2));
+        console.log(numbers.has(20));
+
+
+
+
+        console.log(numbers.size);
+
+        numbers.delete(2);
+        console.log(numbers);
+        console.log(numbers.size);
+
+        let isDeleted = numbers.delete(3);
+        console.log(isDeleted);
+        let isDeleted2Time = numbers.delete(3);
+        console.log(isDeleted2Time);
+
+        numbers.clear();
+        console.log(numbers);
+        console.log(numbers.size);
+
+        numbers.add(6);
+        console.log(numbers);
+        console.log(numbers.size);
+
+        numbers.add(6); // will not be added 
+        console.log(numbers);
+        console.log(numbers.size);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function* generateData(){
+            try{
+                yield "Tom";
+                yield "Bob";
+                yield "Hello";
+            }catch(error){
+                console.log("Error: ", error);
+            }
+        }
+        const personGenerator = generateData();
+        console.log(personGenerator.next());
+        personGenerator.throw("Something wrong");
+        console.log(personGenerator.next());
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        function* getNumber(){
+            const n = yield 5;
+            console.log("n:", n);
+            const m = yield 5 * n;
+            console.log("m:", m);
+            yield 5 * m;
+        }
+        const numberGenerator = getNumber();
+        console.log(numberGenerator.next().value);
+        console.log(numberGenerator.next(2).value);
+        console.log(numberGenerator.next(3).value);
+
+
+
+        function* generateFromArray(items){
+            for(item of items) yield item;
+        }
+        const people = ["Tom", "Bob", "Sam"];
+        const personGenerator = generateFromArray(people);
+        for(person of personGenerator) console.log(person);
+        function* getNumber(start, end, step){
+            for(let n = start; n <= end; n += step){
+                yield n;
+            }
+        }
+        const numberGenerator = getNumber(0, 8, 2);
+        for(num of numberGenerator){
+            console.log(num);
+        }
+        
+
+
+
+
+
+        function* getNumber(){
+            yield 5;
+            yield 25;
+            yield 125;
+        }
+        const numberGenerator = getNumber();
+        while(!(item = numberGenerator.next()).done){
+            console.log(item.value);
+        }
+        for( const num of numberGenerator){
+            console.log(num);
+        }
+        console.log(numberGenerator.next());
+        numberGenerator.return();
+        console.log(numberGenerator.next());
+
+
+
+
+        const numbers = [5, 25, 125, 625];
+        function* getNumber(){
+            for(const n of numbers){
+                yield n;
+            }
+        }
+        const numberGenerator = getNumber();
+        console.log(numberGenerator.next().value);
+        console.log(numberGenerator.next().value);
+        console.log(numberGenerator.next().value);
+        console.log(numberGenerator.next().value);
+        console.log(numberGenerator.next().value);
+
+
+        function* getNumber(){
+            yield 5;
+        }
+        const numberGenerator = getNumber();
+        let next  = numberGenerator.next();
+        console.log(next);
+        next = numberGenerator.next();
+        console.log(next);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const company = {
+            employees: [
+                {name: "Tom", age: 33, position: "Senior"},
+                {name: "Sam", age: 34, position: "Junior"},
+                {name: "Bob", age: 23, position: "Junior"},
+            ],
+        };
+
+        // setting the iterator
+        company[Symbol.iterator] = function(){
+            const array = this.employees;
+            let current = 0;
+            return {
+                next(){
+                    if(current < array.length){
+                        return{ value: array[current++].name, done: false};
+                    }
+                    return {value: undefined, done: true};
+                },
+            };
+        };
+        for(const employee of company){
+            console.log(employee);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      const iterable = {
+        [Symbol.iterator]() {
+          return {
+            current: 1,
+            end: 3,
+            next() {
+              if (this.current <= this.end) {
+                return { value: this.current++, done: false };
+              }
+              return { done: true };
+            },
+          };
+        },
+      };
+
+
+
+
+
+
+
+
+      const people = ["Tom", "Bob", "Sam"];
+      function reverseArrayIterator(){
+          const array = this;
+          let count = array.length;
+          return{
+              next: function(){
+                  if(count > 0){
+                      return{
+                          value: array[--count],
+                          done:false,
+                      };
+                  }else{
+                      return{
+                          value: undefined,
+                          done: true,
+                      };
+                  }
+              },
+          };
+      }
+
+      people[Symbol.iterator] = reverseArrayIterator;
+      for(person of people){
+          console.log(person);
+      }
+
+      const iterator = reverseArrayIterator(people);
+      while(!(item = iterator.next()).done){
+          console.log(item.value);
+      }
+
+      const iterator = people[Symbol.iterator]();
+      while(!(item = iterator.next()).done){
+          console.log(item.value);
+      }
+      const result = iterator.next();
+      console.log(result);
+      console.log(iterator.next());
+      console.log(iterator.next());
+      console.log(iterator.next());
+      console.log(people.entries());
+      const iterator = people[Symbol.iterator]();
+      console.log(iterator);
+      // for(const person of people){
+      //     console.log(person);
+      // }
+
+      const text = "Tom";
+      // for(char of text){
+      //     console.log(char);
+      // }
+      const iterator = text [Symbol.iterator]();
+      console.log(iterator);
+    </script>
+  </body>
+</html>

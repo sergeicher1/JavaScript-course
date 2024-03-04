@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Handling</title>
+  </head>
+  <body>
+    <script>
+        function someFunc() {
+          console.log("SomeFunc Is executed");
+        }
+        try {
+          someFunc();
+        } catch (error) {
+          console.log("An error occured");
+          console.log(error);
+        } finally {
+          console.log("The end of program");
+        }
+
+        someFunc();
+        console.log("Other instructions");
+
+        try{
+          // try block istructions
+        }
+        catch(error){
+          //catch block instructions
+        }
+        finally{
+          // finally block instructions
+        }
+
+      class Person{
+          constructor(name, age){
+              if(age < 0) throw "Age must be positive";
+              this.name = name;
+              this.age = age;
+          }
+          print(){
+              console.log(`Name: ${this.name} Age: ${this.age}`);
+          }
+      }
+      try{
+          const tom = new Person("Tom", -345);
+      tom.print();
+
+      }
+      catch(error){
+          console.log("An error occured: ", error);
+      }
+
+        class Database {
+          constructor() {
+            this.data = ["tom", "bob", "sam"];
+          }
+          // Get the data
+          getItem(index) {
+            this.open();
+            try {
+              if (index > 0 && index < this.data.length) {
+                return this.data[index];
+              } else {
+                throw "Invalid index";
+              }
+            } finally {
+              this.close(); // When exception, this line WILL be executed
+            }
+          }
+          open() {
+            console.log("DB connecetion stablished");
+          }
+          close() {
+            console.log("DB connection closed");
+          }
+        }
+        const db = new Database();
+        try {
+          db.getItem(5);
+        } catch (error) {
+          console.log(error);
+        }
+
+      try{
+          // someFunc();
+          const num = 9;
+          num = 7;
+      }catch(error){
+          console.log("Error type: ", error.name);
+          console.log("Error: ", error.message);
+      }
+
+        class Person {
+          constructor(name, pAge) {
+            const age = parseInt(pAge);
+            if (isNaN(age)) throw new TypeError("Not a Number");
+            if (age < 0 || age > 120) throw new Error("Age must be 0 < age <120");
+
+            this.name = name;
+            this.age = pAge;
+          }
+          print() {
+            console.log(`Name: ${this.name} Age: ${this.age}`);
+          }
+        }
+        try {
+          const tom = new Person("Tom", -45);
+          tom.print();
+        } catch (error) {
+          console.log("Error: ", error.message);
+        }
+        try{
+          const bob = new Person("Bob", "Sdsd");
+          bob.print();
+        }catch(error){
+          if(error instanceof TypeError){
+              console.log("Invalid data ");
+          }
+          console.log(error.message);
+        }
+        try{
+          const sam = new Person("sam", 23);
+          sam.print();
+        }catch(error){
+          console.log(error.message);
+        }
+
+        class PersonError extends Error {
+          constructor(value, ...params) {
+            super(...params);
+            this.name = "PersonError";
+            this.argument = value;
+          }
+        }
+        class Person {
+          constructor(name, pAge) {
+            const age = parseInt(pAge);
+            if (isNaN(age)) throw new PersonError("Not a Number");
+            if (age < 0 || age > 120) throw new Error("Age must be 0 < age <120");
+
+            this.name = name;
+            this.age = pAge;
+          }
+          print() {
+            console.log(`Name: ${this.name} Age: ${this.age}`);
+          }
+        }
+        try {
+          const tom = new Person("Tom", "ASDD");
+          tom.print();
+        } catch (error) {
+          if (error instanceof PersonError) {
+            console.log("Person Error: ", error.argument);
+          }
+        }
+
+      function A() {
+        console.log("Fucntion A starts");
+        someFunc();
+        console.log("Function A ends");
+      }
+      function B() {
+        console.log("Fucntion B starts");
+        A();
+        console.log("Function B ends");
+      }
+      function C() {
+        console.log("Fucntion C starts");
+        try {
+          B();
+        } catch {
+          console.log("Error occured");
+        }
+        console.log("Function C ends");
+      }
+      C();
+      console.log("The end of the program");
+    </script>
+  </body>
+</html>
